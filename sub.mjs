@@ -47,7 +47,7 @@ const subFile = async (filePath, fileName, folder) => {
 
 	const {captions} = convertToCaptions({
 		transcription: result.transcription,
-		combineTokensWithinMilliseconds: 200,
+		combineTokensWithinMilliseconds: 600,
 	});
 	writeFileSync(
 		outPath.replace('webcam', 'subs'),
