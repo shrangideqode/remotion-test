@@ -1,6 +1,7 @@
 
 import { useRendering } from "../helpers/use-rendering";
 import { COMP_NAME } from "../types/constants";
+import { captionedVideoSchema } from "../types/schema";
 import { Button } from "./Button";
 import { InputContainer } from "./Container";
 import { DownloadButton } from "./DownloadButton";
@@ -8,7 +9,6 @@ import { ErrorComp } from "./Error";
 import { Input } from "./Input";
 import { ProgressBar } from "./ProgressBar";
 import { Spacing } from "./Spacing";
-import { captionedVideoSchema } from "../remotion/CaptionedVideo";
 
 export const RenderControls: React.FC<{
   text: string;

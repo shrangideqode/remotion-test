@@ -1,15 +1,32 @@
-import { z } from "zod";
-import { CompositionProps } from "./constants";
 
-export const RenderRequest = z.object({
-  id: z.string(),
-  inputProps: CompositionProps,
-});
+export type SubtitleProp = {
+	startInSeconds: number;
+	text: string;
+};
 
-export const ProgressRequest = z.object({
-  bucketName: z.string(),
-  id: z.string(),
-});
+export type BrollProp = {
+	startInSeconds: number;
+	text: string;
+  videoSrc: string;
+};
+
+export type captionedVideoSchema = {
+	src: string,
+	title: string,
+	subtitles: SubtitleProp[],
+  brolls: BrollProp[],
+	posX: string
+}
+
+export type RenderRequest = {
+  id: string,
+  inputProps: captionedVideoSchema,
+};
+
+export type ProgressRequest = {
+  bucketName: string,
+  id: string,
+};
 
 export type ProgressResponse =
   | {

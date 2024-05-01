@@ -7,7 +7,7 @@ import { DISK, RAM, REGION, TIMEOUT } from "../../../../config.mjs";
 import { executeApi } from "../../../../helpers/api-response";
 import { ProgressRequest, ProgressResponse } from "../../../../types/schema";
 
-export const POST = executeApi<ProgressResponse, typeof ProgressRequest>(
+export const POST = executeApi<ProgressResponse,ProgressRequest>(
   ProgressRequest,
   async (req, body) => {
     const renderProgress = await getRenderProgress({

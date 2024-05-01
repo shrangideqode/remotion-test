@@ -1,25 +1,26 @@
 import { NextResponse } from "next/server";
-import { z, ZodType } from "zod";
 
-export type ApiResponse<Res> =
-  | {
-      type: "error";
-      message: string;
-    }
-  | {
-      type: "success";
-      data: Res;
-    };
+type ErrorResponse = {
+  type: "error";
+  message: string;
+};
+
+type SuccessResponse<Res> = {
+  type: "success";
+  data: Res;
+};
+
+export type ApiResponse<Res> = ErrorResponse | SuccessResponse<Res>;
 
 export const executeApi =
-  <Res, Req extends ZodType>(
-    schema: Req,
-    handler: (req: Request, body: z.infer<Req>) => Promise<Res>
+  <Res, Req>(
+    schema: (payload: any) => Req,
+    handler: (req: Request, body: Req) => Promise<Res>
   ) =>
   async (req: Request) => {
     try {
       const payload = await req.json();
-      const parsed = schema.parse(payload);
+      const parsed = schema(payload);
       const data = await handler(req, parsed);
       return NextResponse.json({
         type: "success",

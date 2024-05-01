@@ -1,11 +1,12 @@
-import { z } from "zod";
+
 import type { RenderMediaOnLambdaOutput } from "@remotion/lambda/client";
 import {
   ProgressRequest,
   ProgressResponse,
   RenderRequest,
+  captionedVideoSchema,
 } from "../types/schema";
-import { CompositionProps } from "../types/constants";
+
 import { ApiResponse } from "../helpers/api-response";
 
 const makeRequest = async <Res>(
@@ -32,9 +33,9 @@ export const renderVideo = async ({
   inputProps,
 }: {
   id: string;
-  inputProps: z.infer<typeof CompositionProps>;
+  inputProps: captionedVideoSchema;
 }) => {
-  const body: z.infer<typeof RenderRequest> = {
+  const body: RenderRequest = {
     id,
     inputProps,
   };
@@ -49,7 +50,7 @@ export const getProgress = async ({
   id: string;
   bucketName: string;
 }) => {
-  const body: z.infer<typeof ProgressRequest> = {
+  const body: ProgressRequest = {
     id,
     bucketName,
   };

@@ -7,7 +7,7 @@ import { DISK, RAM, REGION, SITE_NAME, TIMEOUT } from "../../../../config.mjs";
 import { executeApi } from "../../../../helpers/api-response";
 import { RenderRequest } from "../../../../types/schema";
 
-export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
+export const POST = executeApi<RenderMediaOnLambdaOutput, RenderRequest>(
   RenderRequest,
   async (req, body) => {
     if (

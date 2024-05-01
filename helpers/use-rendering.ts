@@ -1,7 +1,7 @@
-import { z } from "zod";
+
 import { useCallback, useMemo, useState } from "react";
 import { getProgress, renderVideo } from "../lambda/api";
-import { captionedVideoSchema } from "../remotion/CaptionedVideo";
+import { captionedVideoSchema } from "../types/schema";
 
 export type State =
   | {

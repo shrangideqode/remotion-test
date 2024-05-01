@@ -8,7 +8,15 @@ import {
   VIDEO_WIDTH,
 } from "../types/constants";
 import { CaptionedVideo } from "./CaptionedVideo";
+import { captionedVideoSchema } from "../types/schema";
 
+const defaultProps: captionedVideoSchema = {
+  title: "",
+  src: staticFile("2.mp4"),
+  subtitles: [],
+  brolls: [],
+  posX: "0"
+} 
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -20,12 +28,7 @@ export const RemotionRoot: React.FC = () => {
         fps={VIDEO_FPS}
         width={VIDEO_WIDTH}
         height={VIDEO_HEIGHT}
-        defaultProps={{
-          title: "",
-          src: staticFile("2.mp4"),
-          subtitles: [],
-          posX: "0"
-        }}
+        defaultProps={defaultProps}
       />
      
     </>

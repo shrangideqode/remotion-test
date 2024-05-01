@@ -2,13 +2,13 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { NextPage } from "next";
-import { z } from "zod";
 import { Player, PlayerRef } from "@remotion/player";
 import { staticFile } from "remotion";
 import { DURATION_IN_FRAMES, VIDEO_FPS, VIDEO_HEIGHT, VIDEO_WIDTH } from "../types/constants";
 import { Spacing } from "../components/Spacing";
-import { CaptionedVideo, SubtitleProp, captionedVideoSchema } from "../remotion/CaptionedVideo";
+import { CaptionedVideo, } from "../remotion/CaptionedVideo";
 import { Button } from "../components/Button";
+import { BrollProp, SubtitleProp, captionedVideoSchema } from "../types/schema";
 
 function formatTime(seconds: number): string {
   if (!seconds) return "End";
@@ -20,7 +20,8 @@ function formatTime(seconds: number): string {
 const Home: NextPage = () => {
   const [text, setText] = useState<string>("Title");
   const [subtitles, setSubtitles] = useState<SubtitleProp[]>([]);
-  const [posX, setPosX] = useState<string>("0");
+  const [brolls, setBrolls] = useState<BrollProp[]>([]);
+  const [posX, setPosX] = useState<string>("110");
   const [activeTab, setActiveTab] = useState<string>("Theme");
   const playerRef = useRef<PlayerRef>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -35,22 +36,47 @@ const Home: NextPage = () => {
     setSubtitles(data);
   }, []);
 
+  const fetchBrolls = useCallback(async () => {
+    const response = await fetch("/api/broll", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ src: "2.json" })
+    });
+    const data: BrollProp[] = await response.json();
+    setBrolls(data);
+  }, []);
+
   useEffect(() => {
     fetchSubtitles();
+    fetchBrolls();
   }, [fetchSubtitles]);
 
+  console.log("sfdsd", brolls)
   const inputProps = useMemo<captionedVideoSchema>(() => ({
     title: text,
     src: staticFile("2.mp4"),
     subtitles,
+    brolls,
     posX
-  }), [text, subtitles, posX]);
+  }), [text, subtitles, posX, brolls]);
 
   const handleSubtitleChange = (index: number, value: string) => {
     setSubtitles(prev => prev.map((sub, i) => i === index ? { ...sub, text: value } : sub));
   };
 
   const handleSubtitleClick = (timeInSeconds: number) => {
+    setCurrentTime(timeInSeconds);
+    if (playerRef.current) {
+      playerRef.current.seekTo(timeInSeconds * VIDEO_FPS);
+      playerRef.current.pause();
+    }
+  };
+
+  const handleBrollChange = (index: number, value: string) => {
+    setBrolls(prev => prev.map((sub, i) => i === index ? { ...sub, text: value } : sub));
+  };
+
+  const handleBrollClick = (timeInSeconds: number) => {
     setCurrentTime(timeInSeconds);
     if (playerRef.current) {
       playerRef.current.seekTo(timeInSeconds * VIDEO_FPS);
@@ -113,7 +139,31 @@ const Home: NextPage = () => {
         {
           activeTab == "B-roll" && 
           <div>
-            Broll
+            <h1 className="text-2xl font-bold mb-4">B-rolls</h1>
+            <ul className="grid gap-2 h-96 overflow-y-auto">
+              {brolls.map((sub, i) => (
+                <li key={i} onClick={() => handleBrollClick(sub.startInSeconds)}
+                className="bg-white p-4 flex rounded shadow">
+                  <div className="min-w-24 max-w-32 flex justify-center items-center rounded shadow bg-zinc-100  h-24">
+                    +
+                  </div>
+                  <div className="ml-2 ">
+                    <span className="font-semibold">
+                      {formatTime(sub.startInSeconds)} - {formatTime(brolls[i + 1]?.startInSeconds)}:
+                    </span>
+                    <span className="ml-2">
+                      {sub.text}
+                    </span>
+                  </div>
+                 
+                  {/* <input
+                    className="ml-2 cursor-pointer"
+                    value={sub.text}
+                    onChange={(e) => handleBrollChange(i, e.target.value)}
+                  /> */}
+                </li>
+              ))}
+            </ul>
           </div>
         }
 

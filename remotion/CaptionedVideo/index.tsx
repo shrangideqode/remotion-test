@@ -1,8 +1,7 @@
-import {useCallback, useEffect, useState} from 'react';
+import { useState } from 'react';
 import {
 	AbsoluteFill,
 	CalculateMetadataFunction,
-	cancelRender,
 	continueRender,
 	delayRender,
 	OffthreadVideo,
@@ -10,24 +9,13 @@ import {
 	useVideoConfig,
 	Video,
 } from 'remotion';
-import {z} from 'zod';
 import Subtitle from './Subtitle';
 import {getVideoMetadata} from '@remotion/media-utils';
-import {loadFont} from '../load-font';
-import {NoCaptionFile} from './NoCaptionFile';
-import { getStaticFiles, watchStaticFile } from '@remotion/studio';
+import { getStaticFiles } from '@remotion/studio';
+import { captionedVideoSchema } from '../../types/schema';
+import { DURATION_IN_FRAMES } from '../../types/constants';
 
-export type SubtitleProp = {
-	startInSeconds: number;
-	text: string;
-};
 
-export type captionedVideoSchema = {
-	src: string,
-	title: string,
-	subtitles: SubtitleProp[],
-	posX: string
-}
 
 export const calculateCaptionedVideoMetadata: CalculateMetadataFunction<
 captionedVideoSchema
@@ -41,6 +29,27 @@ captionedVideoSchema
 	};
 };
 
+const getStartAndDurationInSecond = (type:"subtitle"|"broll",list:any, item:any, index:number, fps:number) => {
+
+	const nextSubtitle = list[index + 1] ?? null;
+	const subtitleStartFrame = item.startInSeconds * fps;
+	let subtitleEndFrame = Math.min(
+		nextSubtitle ? nextSubtitle.startInSeconds * fps : Infinity,
+		type == "broll" ? DURATION_IN_FRAMES: subtitleStartFrame + fps,
+	);
+
+	const durationInFrames = subtitleEndFrame - subtitleStartFrame;
+	if (durationInFrames <= 0) {
+		return null;
+	}
+	
+	return {
+		start: subtitleStartFrame,
+		durationInFrames: durationInFrames
+	}
+
+}
+
 const getFileExists = (file: string) => {
 	const files = getStaticFiles();
 	const fileExists = files.find((f) => {
@@ -52,42 +61,66 @@ const getFileExists = (file: string) => {
 export const CaptionedVideo: React.FC<
 	 captionedVideoSchema
 	> = ( props ) => {
-	// const [subtitles, setSubtitles] = useState<SubtitleProp[]>([]);
-	const [handle] = useState(() => delayRender());
+	const [handle] = useState(() => delayRender("Subs & Broll",{
+		timeoutInMilliseconds: 45000,
+
+	}));
 	const {fps} = useVideoConfig();
-	const subtitlesFile = props.src
-		.replace(/.mp4$/, '.json')
-		.replace(/.mkv$/, '.json')
-		.replace(/.mov$/, '.json')
-		.replace(/.webm$/, '.json');
+
+	// if(props.subtitles.length && props.brolls.length) {
+	// 	continueRender(handle)
+	// }
+	setTimeout(()=>{
+		continueRender(handle)
+	},40000)
 
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
 			<AbsoluteFill>
-				<OffthreadVideo
+				<Video
 					style={{
 						objectFit: 'cover',
 					}}
 					src={props.src}
 				/>
 			</AbsoluteFill>
+	
+			<AbsoluteFill>
+			{ 
+				props.brolls.map((broll, index)=>{
+					let result = getStartAndDurationInSecond("broll",props.brolls, broll, index, fps)
+					let start = result?.start;
+					let durationInFrames = result?.durationInFrames;
+					
+					if(broll.videoSrc) {
+						return (
+							<Sequence key={index}
+							from={start}
+							durationInFrames={durationInFrames}>
+								<Video
+									style={{
+										objectFit: 'cover',
+										width:"100%"
+									}}
+									src={broll.videoSrc}
+								/>
+							</Sequence>
+						)
+					} else return "" 
+				})
+			}
+			</AbsoluteFill>
+		
 			{props.subtitles.map((subtitle, index) => {
-				const nextSubtitle = props.subtitles[index + 1] ?? null;
-				const subtitleStartFrame = subtitle.startInSeconds * fps;
-				const subtitleEndFrame = Math.min(
-					nextSubtitle ? nextSubtitle.startInSeconds * fps : Infinity,
-					subtitleStartFrame + fps,
-				);
-				const durationInFrames = subtitleEndFrame - subtitleStartFrame;
-				if (durationInFrames <= 0) {
-					return null;
-				}
+				
+				let result = getStartAndDurationInSecond("subtitle",props.subtitles, subtitle, index, fps)
+				let start = result?.start;
+				let durationInFrames = result?.durationInFrames;
 
 				return (
 					<Sequence key={index}
-						from={subtitleStartFrame}
+						from={start}
 						durationInFrames={durationInFrames}
-					
 					>
 						<Subtitle key={index} posX= {props.posX} text={subtitle.text} />;
 					</Sequence>

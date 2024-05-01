@@ -1,4 +1,4 @@
-import { z } from "zod";
+
 export const COMP_NAME = "CaptionedVideo";
 
 // export type CompositionProps = {
