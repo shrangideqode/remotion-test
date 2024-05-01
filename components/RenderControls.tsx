@@ -1,7 +1,6 @@
-import { z } from "zod";
+
 import { useRendering } from "../helpers/use-rendering";
-import { CompositionProps, COMP_NAME } from "../types/constants";
-import { AlignEnd } from "./AlignEnd";
+import { COMP_NAME } from "../types/constants";
 import { Button } from "./Button";
 import { InputContainer } from "./Container";
 import { DownloadButton } from "./DownloadButton";
@@ -9,11 +8,12 @@ import { ErrorComp } from "./Error";
 import { Input } from "./Input";
 import { ProgressBar } from "./ProgressBar";
 import { Spacing } from "./Spacing";
+import { captionedVideoSchema } from "../remotion/CaptionedVideo";
 
 export const RenderControls: React.FC<{
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
-  inputProps: z.infer<typeof CompositionProps>;
+  inputProps: captionedVideoSchema;
 }> = ({ text, setText, inputProps }) => {
   const { renderMedia, state, undo } = useRendering(COMP_NAME, inputProps);
 
@@ -29,7 +29,7 @@ export const RenderControls: React.FC<{
             text={text}
           ></Input>
           <Spacing></Spacing>
-          <AlignEnd>
+          <div>
             <Button
               disabled={state.status === "invoking"}
               loading={state.status === "invoking"}
@@ -37,7 +37,7 @@ export const RenderControls: React.FC<{
             >
               Render video
             </Button>
-          </AlignEnd>
+            </div>
           {state.status === "error" ? (
             <ErrorComp message={state.error.message}></ErrorComp>
           ) : null}
@@ -49,9 +49,9 @@ export const RenderControls: React.FC<{
             progress={state.status === "rendering" ? state.progress : 1}
           />
           <Spacing></Spacing>
-          <AlignEnd>
+          <div>
             <DownloadButton undo={undo} state={state}></DownloadButton>
-          </AlignEnd>
+          </div>
         </>
       ) : null}
     </InputContainer>

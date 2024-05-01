@@ -1,0 +1,492 @@
+{
+  "systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 1 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | METAL = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 1 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0",
+  "model": {
+    "type": "medium",
+    "multilingual": false,
+    "vocab": 51864,
+    "audio": {
+      "ctx": 1500,
+      "state": 1024,
+      "head": 16,
+      "layer": 24
+    },
+    "text": {
+      "ctx": 448,
+      "state": 1024,
+      "head": 16,
+      "layer": 24
+    },
+    "mels": 80,
+    "ftype": 1
+  },
+  "params": {
+    "model": "/home/deq/Shrangi/react/remotion-test/whisper.cpp/ggml-medium.en.bin",
+    "language": "en",
+    "translate": false
+  },
+  "result": {
+    "language": "en"
+  },
+  "transcription": [
+    {
+      "text": "Decode",
+      "startInSeconds": 0.44
+    },
+    {
+      "text": "Labs",
+      "startInSeconds": 0.84
+    },
+    {
+      "text": "was",
+      "startInSeconds": 1.1
+    },
+    {
+      "text": "founded",
+      "startInSeconds": 1.4
+    },
+    {
+      "text": "in 2012",
+      "startInSeconds": 1.68
+    },
+    {
+      "text": "and has since",
+      "startInSeconds": 3.06
+    },
+    {
+      "text": "established",
+      "startInSeconds": 4.08
+    },
+    {
+      "text": "itself",
+      "startInSeconds": 4.6
+    },
+    {
+      "text": "as a",
+      "startInSeconds": 4.78
+    },
+    {
+      "text": "prominent",
+      "startInSeconds": 5.34
+    },
+    {
+      "text": "player",
+      "startInSeconds": 5.7
+    },
+    {
+      "text": "in the",
+      "startInSeconds": 5.92
+    },
+    {
+      "text": "AI and",
+      "startInSeconds": 6.44
+    },
+    {
+      "text": "blockchain",
+      "startInSeconds": 7.1
+    },
+    {
+      "text": "development",
+      "startInSeconds": 7.52
+    },
+    {
+      "text": "space.",
+      "startInSeconds": 8.06
+    },
+    {
+      "text": "The company's",
+      "startInSeconds": 8.66
+    },
+    {
+      "text": "mission",
+      "startInSeconds": 9.38
+    },
+    {
+      "text": "is centered",
+      "startInSeconds": 9.56
+    },
+    {
+      "text": "around",
+      "startInSeconds": 10.38
+    },
+    {
+      "text": "providing",
+      "startInSeconds": 10.86
+    },
+    {
+      "text": "businesses",
+      "startInSeconds": 11.42
+    },
+    {
+      "text": "with",
+      "startInSeconds": 11.8
+    },
+    {
+      "text": "advanced",
+      "startInSeconds": 12.24
+    },
+    {
+      "text": "technology",
+      "startInSeconds": 12.86
+    },
+    {
+      "text": "solutions",
+      "startInSeconds": 13.42
+    },
+    {
+      "text": "that can",
+      "startInSeconds": 13.74
+    },
+    {
+      "text": "help",
+      "startInSeconds": 14.1
+    },
+    {
+      "text": "them",
+      "startInSeconds": 14.3
+    },
+    {
+      "text": "stay",
+      "startInSeconds": 14.58
+    },
+    {
+      "text": "ahead",
+      "startInSeconds": 14.96
+    },
+    {
+      "text": "in the",
+      "startInSeconds": 15.16
+    },
+    {
+      "text": "competitive",
+      "startInSeconds": 15.8
+    },
+    {
+      "text": "market.",
+      "startInSeconds": 16.26
+    },
+    {
+      "text": "By focusing",
+      "startInSeconds": 16.84
+    },
+    {
+      "text": "on AI",
+      "startInSeconds": 17.48
+    },
+    {
+      "text": "and",
+      "startInSeconds": 18.1
+    },
+    {
+      "text": "blockchain",
+      "startInSeconds": 18.48
+    },
+    {
+      "text": "technologies,",
+      "startInSeconds": 19.34
+    },
+    {
+      "text": "Decode",
+      "startInSeconds": 19.94
+    },
+    {
+      "text": "Labs",
+      "startInSeconds": 20.44
+    },
+    {
+      "text": "aims",
+      "startInSeconds": 20.8
+    },
+    {
+      "text": "to drive",
+      "startInSeconds": 21.06
+    },
+    {
+      "text": "innovation",
+      "startInSeconds": 21.86
+    },
+    {
+      "text": "and",
+      "startInSeconds": 22.18
+    },
+    {
+      "text": "growth",
+      "startInSeconds": 22.5
+    },
+    {
+      "text": "for",
+      "startInSeconds": 22.72
+    },
+    {
+      "text": "its clients,",
+      "startInSeconds": 22.86
+    },
+    {
+      "text": "enabling",
+      "startInSeconds": 24.08
+    },
+    {
+      "text": "them",
+      "startInSeconds": 24.32
+    },
+    {
+      "text": "to achieve",
+      "startInSeconds": 24.52
+    },
+    {
+      "text": "their",
+      "startInSeconds": 25.06
+    },
+    {
+      "text": "business",
+      "startInSeconds": 25.46
+    },
+    {
+      "text": "objectives",
+      "startInSeconds": 25.9
+    },
+    {
+      "text": "effectively.",
+      "startInSeconds": 26.56
+    },
+    {
+      "text": "The team",
+      "startInSeconds": 27.18
+    },
+    {
+      "text": "at Decode",
+      "startInSeconds": 27.62
+    },
+    {
+      "text": "Labs",
+      "startInSeconds": 28.22
+    },
+    {
+      "text": "is committed",
+      "startInSeconds": 28.66
+    },
+    {
+      "text": "to delivering",
+      "startInSeconds": 29.24
+    },
+    {
+      "text": "bespoke",
+      "startInSeconds": 30.04
+    },
+    {
+      "text": "solutions",
+      "startInSeconds": 30.72
+    },
+    {
+      "text": "that are",
+      "startInSeconds": 30.94
+    },
+    {
+      "text": "tailored",
+      "startInSeconds": 31.36
+    },
+    {
+      "text": "to meet",
+      "startInSeconds": 31.6
+    },
+    {
+      "text": "the unique",
+      "startInSeconds": 31.98
+    },
+    {
+      "text": "needs",
+      "startInSeconds": 32.66
+    },
+    {
+      "text": "of each",
+      "startInSeconds": 32.82
+    },
+    {
+      "text": "client,",
+      "startInSeconds": 33.4
+    },
+    {
+      "text": "ensuring",
+      "startInSeconds": 34.1
+    },
+    {
+      "text": "high-quality",
+      "startInSeconds": 34.5
+    },
+    {
+      "text": "outcomes",
+      "startInSeconds": 35.3
+    },
+    {
+      "text": "every",
+      "startInSeconds": 35.7
+    },
+    {
+      "text": "time.",
+      "startInSeconds": 36.1
+    },
+    {
+      "text": "The company's",
+      "startInSeconds": 36.62
+    },
+    {
+      "text": "culture",
+      "startInSeconds": 37.36
+    },
+    {
+      "text": "is built",
+      "startInSeconds": 37.62
+    },
+    {
+      "text": "on principles",
+      "startInSeconds": 38.14
+    },
+    {
+      "text": "of innovation,",
+      "startInSeconds": 38.78
+    },
+    {
+      "text": "collaboration,",
+      "startInSeconds": 40.36
+    },
+    {
+      "text": "and continuous",
+      "startInSeconds": 40.96
+    },
+    {
+      "text": "learning,",
+      "startInSeconds": 42.02
+    },
+    {
+      "text": "fostering",
+      "startInSeconds": 42.76
+    },
+    {
+      "text": "an environment",
+      "startInSeconds": 43
+    },
+    {
+      "text": "where",
+      "startInSeconds": 43.82
+    },
+    {
+      "text": "creativity",
+      "startInSeconds": 44.46
+    },
+    {
+      "text": "and",
+      "startInSeconds": 44.84
+    },
+    {
+      "text": "expertise",
+      "startInSeconds": 45.36
+    },
+    {
+      "text": "can thrive.",
+      "startInSeconds": 45.66
+    },
+    {
+      "text": "Ultimately,",
+      "startInSeconds": 47.1
+    },
+    {
+      "text": "Decode",
+      "startInSeconds": 47.74
+    },
+    {
+      "text": "Labs'",
+      "startInSeconds": 48.12
+    },
+    {
+      "text": "goal",
+      "startInSeconds": 48.5
+    },
+    {
+      "text": "is to",
+      "startInSeconds": 48.76
+    },
+    {
+      "text": "empower",
+      "startInSeconds": 49.34
+    },
+    {
+      "text": "businesses",
+      "startInSeconds": 49.76
+    },
+    {
+      "text": "to not",
+      "startInSeconds": 50.12
+    },
+    {
+      "text": "just",
+      "startInSeconds": 50.6
+    },
+    {
+      "text": "survive",
+      "startInSeconds": 51.08
+    },
+    {
+      "text": "but",
+      "startInSeconds": 51.34
+    },
+    {
+      "text": "thrive",
+      "startInSeconds": 51.82
+    },
+    {
+      "text": "in the",
+      "startInSeconds": 52.02
+    },
+    {
+      "text": "digital",
+      "startInSeconds": 52.46
+    },
+    {
+      "text": "age,",
+      "startInSeconds": 52.86
+    },
+    {
+      "text": "equipping",
+      "startInSeconds": 53.42
+    },
+    {
+      "text": "them with",
+      "startInSeconds": 53.7
+    },
+    {
+      "text": "with",
+      "startInSeconds": 53.88
+    },
+    {
+      "text": "the tools",
+      "startInSeconds": 54.06
+    },
+    {
+      "text": "and",
+      "startInSeconds": 54.64
+    },
+    {
+      "text": "strategies",
+      "startInSeconds": 55.16
+    },
+    {
+      "text": "needed",
+      "startInSeconds": 55.54
+    },
+    {
+      "text": "to succeed",
+      "startInSeconds": 55.82
+    },
+    {
+      "text": "in an",
+      "startInSeconds": 56.54
+    },
+    {
+      "text": "ever evolving",
+      "startInSeconds": 57.04
+    },
+    {
+      "text": "landscape.",
+      "startInSeconds": 57.98
+    }
+  ]
+}
