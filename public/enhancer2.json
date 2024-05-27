@@ -1,0 +1,172 @@
+{
+  "systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 1 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | METAL = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 1 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0",
+  "model": {
+    "type": "medium",
+    "multilingual": false,
+    "vocab": 51864,
+    "audio": {
+      "ctx": 1500,
+      "state": 1024,
+      "head": 16,
+      "layer": 24
+    },
+    "text": {
+      "ctx": 448,
+      "state": 1024,
+      "head": 16,
+      "layer": 24
+    },
+    "mels": 80,
+    "ftype": 1
+  },
+  "params": {
+    "model": "/home/deq/Shrangi/react/remotion-test/whisper.cpp/ggml-medium.en.bin",
+    "language": "en",
+    "translate": false
+  },
+  "result": {
+    "language": "en"
+  },
+  "transcription": [
+    {
+      "text": "Welcome to",
+      "startInSeconds": 0.38
+    },
+    {
+      "text": "the era of generative",
+      "startInSeconds": 0.76
+    },
+    {
+      "text": "AI, where innovation",
+      "startInSeconds": 2.1
+    },
+    {
+      "text": "meets limitless",
+      "startInSeconds": 3.2
+    },
+    {
+      "text": "possibilities.",
+      "startInSeconds": 4.46
+    },
+    {
+      "text": "With generative",
+      "startInSeconds": 5.22
+    },
+    {
+      "text": "AI, you can",
+      "startInSeconds": 6.02
+    },
+    {
+      "text": "unlock endless",
+      "startInSeconds": 6.78
+    },
+    {
+      "text": "creativity",
+      "startInSeconds": 7.9
+    },
+    {
+      "text": "and efficiency",
+      "startInSeconds": 8.14
+    },
+    {
+      "text": "like never before.",
+      "startInSeconds": 8.88
+    },
+    {
+      "text": "Imagine AI-generated",
+      "startInSeconds": 10.44
+    },
+    {
+      "text": "content tailored",
+      "startInSeconds": 11.82
+    },
+    {
+      "text": "to your audience's",
+      "startInSeconds": 12.38
+    },
+    {
+      "text": "preferences,",
+      "startInSeconds": 13.56
+    },
+    {
+      "text": "captivating visuals",
+      "startInSeconds": 14.3
+    },
+    {
+      "text": "designed to leave",
+      "startInSeconds": 15.36
+    },
+    {
+      "text": "a lasting impression,",
+      "startInSeconds": 15.82
+    },
+    {
+      "text": "and data-driven",
+      "startInSeconds": 17.22
+    },
+    {
+      "text": "insights that",
+      "startInSeconds": 18.12
+    },
+    {
+      "text": "drive strategic",
+      "startInSeconds": 18.6
+    },
+    {
+      "text": "decision-making.",
+      "startInSeconds": 19.6
+    },
+    {
+      "text": "Generative",
+      "startInSeconds": 20.7
+    },
+    {
+      "text": "AI isn't just",
+      "startInSeconds": 21.3
+    },
+    {
+      "text": "a tool, it's",
+      "startInSeconds": 22.04
+    },
+    {
+      "text": "a game-changer",
+      "startInSeconds": 23.02
+    },
+    {
+      "text": "for businesses.",
+      "startInSeconds": 23.8
+    },
+    {
+      "text": "Join the",
+      "startInSeconds": 25.16
+    },
+    {
+      "text": "revolution today",
+      "startInSeconds": 25.72
+    },
+    {
+      "text": "and experience",
+      "startInSeconds": 26.62
+    },
+    {
+      "text": "the future",
+      "startInSeconds": 27.32
+    },
+    {
+      "text": "of marketing and",
+      "startInSeconds": 27.84
+    },
+    {
+      "text": "brand creation",
+      "startInSeconds": 28.54
+    },
+    {
+      "text": "with generative",
+      "startInSeconds": 29.54
+    },
+    {
+      "text": "AI solutions.",
+      "startInSeconds": 30.3
+    }
+  ]
+}

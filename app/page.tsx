@@ -3,12 +3,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { NextPage } from "next";
 import { Player, PlayerRef } from "@remotion/player";
-import { staticFile } from "remotion";
+import { CalculateMetadataFunction, prefetch, staticFile } from "remotion";
 import { DURATION_IN_FRAMES, VIDEO_FPS, VIDEO_HEIGHT, VIDEO_WIDTH } from "../types/constants";
 import { Spacing } from "../components/Spacing";
 import { CaptionedVideo, } from "../remotion/CaptionedVideo";
 import { Button } from "../components/Button";
 import { BrollProp, SubtitleProp, captionedVideoSchema } from "../types/schema";
+import { getVideoMetadata } from "@remotion/renderer";
 
 function formatTime(seconds: number): string {
   if (!seconds) return "End";
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
     const response = await fetch("/api/captions", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ src: "2.json" })
+      body: JSON.stringify({ src: "enhancer2.json" })
     });
     const data: SubtitleProp[] = await response.json();
     setSubtitles(data);
@@ -40,9 +41,22 @@ const Home: NextPage = () => {
     const response = await fetch("/api/broll", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ src: "2.json" })
+      body: JSON.stringify({ src: "enhancer2.json" })
     });
     const data: BrollProp[] = await response.json();
+    data.forEach(broll=>{
+      if(broll.videoSrc) {
+        const { free, waitUntilDone } = prefetch(broll.videoSrc, {
+          method: "blob-url",
+          contentType: "video/mp4"
+        });
+        
+        waitUntilDone().then((res:any) => {
+          console.log("Video has finished loading",res);
+        });
+      }
+    })
+   
     setBrolls(data);
   }, []);
 
@@ -51,14 +65,23 @@ const Home: NextPage = () => {
     fetchBrolls();
   }, [fetchSubtitles]);
 
-  console.log("sfdsd", brolls)
+  // const calculateVideoMetadata: CalculateMetadataFunction = async() =>{
+
+  // } 
+
   const inputProps = useMemo<captionedVideoSchema>(() => ({
     title: text,
-    src: staticFile("2.mp4"),
+    src: staticFile("enhancer2.mp4"),
     subtitles,
     brolls,
     posX
   }), [text, subtitles, posX, brolls]);
+
+  const metadata = useCallback(async ()=>{
+    // let metadata = await getVideoMetadata(staticFile("enhancer2.mp4"));
+    console.log('Metadata', metadata)
+
+  }, [])
 
   const handleSubtitleChange = (index: number, value: string) => {
     setSubtitles(prev => prev.map((sub, i) => i === index ? { ...sub, text: value } : sub));
@@ -182,6 +205,7 @@ const Home: NextPage = () => {
             ref={playerRef}
             component={CaptionedVideo}
             inputProps={inputProps}
+            // calculateMetadata={}
             durationInFrames={DURATION_IN_FRAMES}
             fps={VIDEO_FPS}
             compositionHeight={VIDEO_HEIGHT}

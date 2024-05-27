@@ -1,0 +1,32 @@
+[
+  {
+      "text": "Welcome to the era of generative AI, where innovation meets limitless possibilities.",
+      "startInSeconds": 0.38
+  },
+  {
+      "text": "With generative AI, you can unlock endless creativity and efficiency like never before.",
+      "startInSeconds": 3.3,
+      "effect":"",
+      "videoSrc":"https://videos.pexels.com/video-files/18069232/18069232-uhd_3840_2160_24fps.mp4"
+  },
+  {
+      "text": "Imagine AI-generated content tailored to your audience's preferences.",
+      "startInSeconds": 10.44
+  },
+  {
+      "text": "Captivating visuals designed to leave a lasting impression, and data-driven insights that drive strategic decision-making.",
+      "startInSeconds": 12.38,
+      "effect":"zoom-in",
+      "videoSrc": "https://cdn.pixabay.com/video/2023/10/01/183108-870151713_large.mp4"
+  },
+  {
+      "text": "Generative AI isn't just a tool, it's a game-changer for businesses.",
+      "startInSeconds": 18.6
+  },
+  {
+      "text": "Join the revolution today and experience the future of marketing and brand creation with generative AI solutions.",
+      "startInSeconds": 25,
+      "effect":"zoom-out",
+      "videoSrc": "https://cdn.pixabay.com/video/2015/08/07/2-135653517_large.mp4"
+  }
+]

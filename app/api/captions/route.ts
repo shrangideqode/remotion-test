@@ -18,7 +18,10 @@ export async function POST(req: Request, context: any) {
 
     return new Response(JSON.stringify(data.transcription) , {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "*",
       },
       status : 201
     })
@@ -26,7 +29,10 @@ export async function POST(req: Request, context: any) {
   catch(err){
     return new Response(JSON.stringify(err), {
       headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "*",
       },
       status : 400
     })

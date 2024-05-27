@@ -6,6 +6,7 @@
   {
       "text": "The company's mission is centered around providing businesses with advanced technology solutions that can help them stay ahead in the competitive market.",
       "startInSeconds": 8.66,
+      "effect":"zoom-in",
       "videoSrc": "https://videos.pexels.com/video-files/6498520/6498520-uhd_2160_3840_25fps.mp4"
   },
   {
@@ -19,6 +20,7 @@
   {
       "text": "The company's culture is built on principles of innovation, collaboration, and continuous learning, fostering an environment where creativity and expertise can thrive.",
       "startInSeconds": 36.1,
+      "effect":"zoom-out",
       "videoSrc": "https://videos.pexels.com/video-files/7534401/7534401-uhd_2160_4096_25fps.mp4"
   },
   {

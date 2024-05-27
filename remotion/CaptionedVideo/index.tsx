@@ -4,8 +4,11 @@ import {
 	CalculateMetadataFunction,
 	continueRender,
 	delayRender,
+	interpolate,
 	OffthreadVideo,
 	Sequence,
+	spring,
+	useCurrentFrame,
 	useVideoConfig,
 	Video,
 } from 'remotion';
@@ -14,6 +17,7 @@ import {getVideoMetadata} from '@remotion/media-utils';
 import { getStaticFiles } from '@remotion/studio';
 import { captionedVideoSchema } from '../../types/schema';
 import { DURATION_IN_FRAMES } from '../../types/constants';
+import { makeTransform, scale, translateY } from '@remotion/animation-utils';
 
 
 
@@ -58,21 +62,23 @@ const getFileExists = (file: string) => {
 	return Boolean(fileExists);
 };
 
+
+
 export const CaptionedVideo: React.FC<
 	 captionedVideoSchema
 	> = ( props ) => {
-	const [handle] = useState(() => delayRender("Subs & Broll",{
-		timeoutInMilliseconds: 45000,
+	// const [handle] = useState(() => delayRender("Subs & Broll",{
+	// 	timeoutInMilliseconds: 45000,
 
-	}));
+	// }));
+	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
 
-	// if(props.subtitles.length && props.brolls.length) {
+
+
+	// setTimeout(()=>{
 	// 	continueRender(handle)
-	// }
-	setTimeout(()=>{
-		continueRender(handle)
-	},40000)
+	// },40000)
 
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
@@ -80,6 +86,9 @@ export const CaptionedVideo: React.FC<
 				<Video
 					style={{
 						objectFit: 'cover',
+						// transform: makeTransform([
+						// 	scale(interpolate(animate, [1, 2], [1, 2])),
+						// ]),
 					}}
 					src={props.src}
 				/>
@@ -89,18 +98,33 @@ export const CaptionedVideo: React.FC<
 			{ 
 				props.brolls.map((broll, index)=>{
 					let result = getStartAndDurationInSecond("broll",props.brolls, broll, index, fps)
-					let start = result?.start;
-					let durationInFrames = result?.durationInFrames;
+					let start = result?.start || 0;
+					let durationInFrames = result?.durationInFrames || 0;
+					const animate = spring({
+						frame,
+						fps,
+						config: {
+							damping: 200,
+						},
+						durationInFrames: durationInFrames,
+					});
 					
 					if(broll.videoSrc) {
 						return (
 							<Sequence key={index}
-							from={start}
+							from={start} 
+							premountFor={300}
 							durationInFrames={durationInFrames}>
-								<Video
+								<Video 
 									style={{
 										objectFit: 'cover',
-										width:"100%"
+										width:"100%",
+										transform: makeTransform([
+											scale(interpolate(frame, [start, start+(fps/2), start+(fps/1.5)], [1,1.25, 1.28],{
+												extrapolateLeft: "clamp",
+												extrapolateRight: "clamp"
+											})),
+										]),
 									}}
 									src={broll.videoSrc}
 								/>
